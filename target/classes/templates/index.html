@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <title>In-Vest V2</title>
+</head>
+
+
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="title-container">
+            <h4>In-Vest v2.0</h4>
+            <p>Stock Analytics + Trading</p>
+        </div>
+        <nav>
+            <ul>
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/Dashboard}">Dashboard</a>
+                <a href="">Trade</a>
+                <a href="">Quant Models</a>
+                <a href="">My Profile</a>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+
+<main>
+    <div class="Home-About">
+        <h4>Lowering the Barrier of Entry to Bot and Quant Trading</h4>
+        <a href="">Let's Invest</a>
+        <p>Learn, trade, practice, exchange tactics...In-vest</p>
+    </div>
+
+    <div class="main-content">
+        <div class="card" id="card1">
+            <div class="card-text">
+                <h4>Curate Dashboards for Tickers</h4>
+                <p>Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.</p>
+            </div>
+            <img th:src="@{network.png}" alt="">
+        </div>
+        <div class="card" id="card2">
+            <div class="card-text">
+                <h4>Curate Dashboards for Tickers</h4>
+                <p>Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.</p>
+            </div>
+            <img th:src="@{Infographic_Plotly.png}" alt="">
+        </div>
+        <div class="card" id="card3">
+            <div class="card-text">
+                <h4>Curate Dashboards for Tickers</h4>
+                <p>Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.Utilize extensive historical stock data from the Polygon.io api. Learn trends, features, and chat.</p>
+            </div>
+            <img th:src="@{TradingBot.png}" alt="">
+        </div>
+    </div>
+</main>
+
+
+
+
+<footer>
+    <div class="Footer-Section">
+        <h2>Estee Builds</h2>
+        <div class="Card-Sec">
+            <div class="Footer-Cards" id="Fcard1">
+                <h4>About</h4>
+                <p>Learn to develop algorithmic trading techniques and practice general stock trading at no risk to you. Share finanical quant trading models.</p>
+            </div>
+            <div class="Footer-Cards" id="Fcard2">
+                <h4>Site Contents</h4>
+                <p>Talking about this website and the purpose</p>
+            </div>
+            <div class="Footer-Cards" id="Fcard3">
+                <h4>Contact</h4>
+                <p>Talking about this website and the purpose</p>
+            </div>
+            <div class="Footer-Cards" id="Fcard4">
+                <h4>Socials</h4>
+                <p>Talking about this website and the purpose</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>

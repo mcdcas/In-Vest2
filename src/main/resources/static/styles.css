@@ -1,0 +1,145 @@
+body {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 0px;
+}
+
+header {
+    grid-column: 2 / 12;
+}
+main {
+    grid-column: 1 / 13;
+}
+footer {
+    grid-column: 1 / 13;
+}
+
+header, main, footer {
+    color: #426B1F;
+    font-family: Newsreader;
+    margin: 15px 0px;
+}
+
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header-container ul {
+    display: flex;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.title-container h4 {
+    font-size: 1.6em;
+    margin: 0px;
+}
+.title-container p {
+    font-size: 1.3em;
+    margin: 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-container a {
+    text-decoration: none;
+    margin: 10px 10px;
+    color: #426B1F;
+}
+
+
+
+
+
+
+
+.Home-About {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0px 0px 50px 0px;
+}
+
+.Home-About h4 {
+    font-size: 3.5em;
+    width: 75%;
+    font-weight: normal;
+    color: #426B1F;
+}
+
+.Home-About a {
+    color: white;
+    padding: 17px 17px;
+    background-color: #426B1F;
+    border-radius: 5%;
+    font-size: 1.6em;
+    text-decoration: none;
+    color: white;
+}
+
+.Home-About a:on-hover {
+    color: #384032;
+}
+
+.Home-About p {
+    padding-top: 10px;
+    font-size: 1.3em;
+    color: #426B1F;
+}
+
+
+
+
+
+
+
+
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+}
+
+.card {
+    grid-column: 2 / 12;
+    margin: 5px;
+    display: flex;
+    align-content: space-between;
+}
+
+.card img {
+    width: 400px;
+    height: 300px;
+}
+
+
+Footer {
+    background-color: #426B1F;
+    color: white;
+}
+
+.Footer-Section {
+    margin: 30px;
+}
+
+.Card-Sec {
+    display: flex;
+}
+
+.Footer-Cards {
+    width: 20%;
+    margin: 0% 1%;
+}
