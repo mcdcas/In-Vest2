@@ -5,6 +5,7 @@ import com.investv2.In_VestV20.Entity.TickerHistory;
 import com.investv2.In_VestV20.Entity.TickerResponse;
 import com.investv2.In_VestV20.Service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,5 +44,11 @@ public class DashboardController {
         }
 
         return mav;
+    }
+
+    @GetMapping("/api/stockData")
+    public ResponseEntity<List<TickerHistory>> getStockData(@RequestParam String ticker) {
+        List<TickerHistory> stockData = dashboardService.dataFetch(ticker);
+        return ResponseEntity.ok(stockData);
     }
 }

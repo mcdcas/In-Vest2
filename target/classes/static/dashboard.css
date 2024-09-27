@@ -1,0 +1,100 @@
+.Main-Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Label and button section*/
+.Ticker-Search {
+    display: flex;
+    flex-direction: column; /* Stack label, input, and button vertically */
+    justify-content: center;
+    align-items: center; /* Center the contents */
+    text-align: center;
+    width: 70%; /* Adjusted width to make it slightly smaller */
+    padding: 15px;
+    font-size: 1.3em;
+    margin: 15px 0px;
+    font-size: 1.4em;
+}
+
+.Ticker-Search label {
+    color: #426B1F; /* Your preferred color */
+    margin-bottom: 8px;
+    width: 100%; /* Ensure it takes full width */
+    text-align: center; /* Center label text */
+}
+
+.Ticker-Search input {
+    width: 100%;
+    max-width: 350px; /* Slightly smaller input */
+    padding: 8px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+    text-align: center; /* Center the input text */
+}
+
+.Ticker-Search input:focus {
+    border-color: #61994e; /* Slightly lighter green on focus */
+    outline: none; /* Remove the default blue outline */
+    box-shadow: 0px 0px 8px rgba(98, 154, 78, 0.3); /* Add soft shadow on focus */
+}
+
+.Ticker-Search button {
+    font-size: 1.1em; /* Slightly smaller button size */
+    padding: 10px 18px; /* Adjusted padding for smaller button */
+    border: none;
+    background-color: #426B1F; /* Button in your preferred color */
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.Ticker-Search button:hover {
+    background-color: #61994e; /* Lighter green on hover */
+}
+
+.Ticker-Search button:active {
+    background-color: #3a5c19; /* Darker green when clicked */
+    transform: scale(0.98); /* Slight shrink effect on click */
+}
+
+
+/* End label and button section*/
+
+.Main-Sections {
+    margin: 10px 0px;
+    width: 80%;
+    border: 1px solid green;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 15px;
+}
+
+.Chart-Results, .Dashboard-Results, .Ticker-Content, .Stock-News {
+    min-heights: 300px;
+    max-height: 400px;
+}
+
+.Chart-Results {
+    grid-column: 1/7;
+    overflow: scroll;
+}
+
+.Dashboard-Results {
+    grid-column: 7/13;
+    overflow: scroll;
+}
+
+.Ticker-Content {
+    grid-column: 1/7;
+    overflow: scroll;
+}
+
+.Stock-News {
+    grid-column: 7/13;
+    overflow: scroll;
+}

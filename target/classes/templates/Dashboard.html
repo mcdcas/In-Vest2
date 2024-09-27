@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
     <title>In-Vest V2</title>
+
+    <!-- Include Plotly.js from CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
-
 <body>
-
 <header>
     <div class="header-container">
         <div class="title-container">
@@ -34,51 +34,74 @@
     </div>
 </header>
 
-
-
 <main>
-    <div id="tickerForm" class="Ticker-Search">
-        <form th:action="@{/Analytics}" method="get">
-            <label for="ticker">Ticker:</label>
-            <input type="text" placeholder="NVDA" id="ticker" name="ticker" required>
-            <button type="submit">Get Data...</button>
-        </form>
+    <div class="Main-Content">
+        <div class="Ticker-Search">
+            <div id="tickerForm" class="Ticker-Search">
+                <form th:action="@{/Analytics}" method="get">
+                    <label for="ticker">Ticker Search:</label>
+                    <input type="text" placeholder="NVDA" id="ticker" name="ticker" required>
+                    <button type="submit">Get Data...</button>
+                </form>
+            </div>
+        </div>
+        <div class="Main-Sections">
+            <div class="Chart-Results">
+                <div th:if="${errorMessage}">
+                    <p th:text="${errorMessage}" style="color: red;"></p>
+                </div>
+
+                <div th:if="${stockData} == null">
+                    <p> Chart Results</p>
+                </div>
+                <div class="Card-Title">
+                    <h4 th:if="${ticker}">Stock Data for [[${ticker}]]</h4>
+                </div>
+                <div class="Card-Content">
+                    <table th:if="${stockData}" border="1">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Open</th>
+                            <th>Close</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Volume</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="data : ${stockData}">
+                            <td th:text="${#dates.format(data.date, 'yyyy-MM-dd')}"></td>
+                            <td th:text="${data.open_price}"></td>
+                            <td th:text="${data.close_price}"></td>
+                            <td th:text="${data.high_price}"></td>
+                            <td th:text="${data.low_price}"></td>
+                            <td th:text="${data.volume}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="Dashboard-Results">
+                <div th:if="${stockData} == null">
+                    <p> Waiting on Submit</p>
+                </div>
+                <div class="Card-Title">
+                    <h4>Ticker Dashboard</h4>
+                </div>
+                <div class="Card-Content">
+                    <div class="Plotly" id="stockChart"></div>
+                </div>
+            </div>
+            <div class="Ticker-Content">
+                <p>Ticker Content Placeholder</p>
+            </div>
+            <div class="Stock-News">
+                <p>Stock News Placeholder</p>
+            </div>
+        </div>
     </div>
-    <!-- Show error message if stock is not found -->
-    <div th:if="${errorMessage}">
-        <p th:text="${errorMessage}" style="color: red;"></p>
-    </div>
-
-    <!-- Display Stock History if available -->
-    <h1 th:if="${ticker}">Stock Data for [[${ticker}]]</h1>
-
-    <table th:if="${stockData}" border="1">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Open</th>
-            <th>Close</th>
-            <th>High</th>
-            <th>Low</th>
-            <th>Volume</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="data : ${stockData}">
-            <td th:text="${#dates.format(data.date, 'yyyy-MM-dd')}"></td>
-            <td th:text="${data.open_price}"></td>
-            <td th:text="${data.close_price}"></td>
-            <td th:text="${data.high_price}"></td>
-            <td th:text="${data.low_price}"></td>
-            <td th:text="${data.volume}"></td>
-        </tr>
-        </tbody>
-    </table>
-
 </main>
-
-
-
 
 <footer>
     <div class="Footer-Section">
@@ -86,7 +109,7 @@
         <div class="Card-Sec">
             <div class="Footer-Cards" id="Fcard1">
                 <h4>About</h4>
-                <p>Learn to develop algorithmic trading techniques and practice general stock trading at no risk to you. Share finanical quant trading models.</p>
+                <p>Learn to develop algorithmic trading techniques and practice general stock trading at no risk to you. Share financial quant trading models.</p>
             </div>
             <div class="Footer-Cards" id="Fcard2">
                 <h4>Site Contents</h4>
@@ -104,7 +127,35 @@
     </div>
 </footer>
 
+<script th:inline="javascript">
+    const ticker = /*[[${ticker}]]*/ 'DEFAULT_TICKER'; // Pass ticker from Thymeleaf
+    const stockData = /*[[${stockData}]]*/ null; // Pass stock data if available
 
+    // Function to render the chart if stockData is available
+    function renderChart() {
+        if (stockData) {
+            const dates = stockData.map(data => /*[[${#dates.format(data.date, 'yyyy-MM-dd')}]]*/ '2024-01-01');
+            const closes = stockData.map(data => data.close_price);
+
+            const trace = {
+                x: dates,
+                y: closes,
+                type: 'scatter'
+            };
+
+            const layout = {
+                title: 'Stock Prices',
+                xaxis: { title: 'Date' },
+                yaxis: { title: 'Close Price' }
+            };
+
+            Plotly.newPlot('stockChart', [trace], layout);
+        }
+    }
+
+    // Call the renderChart function when the page loads
+    document.addEventListener('DOMContentLoaded', renderChart);
+</script>
 
 </body>
 </html>
